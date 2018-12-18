@@ -1,20 +1,38 @@
 $(document).ready(function(){
   console.log('jQuery loaded');
 
-  // write to local storage from input when button save clicked
-  $('.btn-submit').on('click', function(){
-    localStorage.setItem('inputFieldValue', $('.text-entry').val());
-    var myItemInStorage = localStorage.getItem('inputFieldValue');
-    console.log('myItemInStorage', myItemInStorage);
+  let dataInput = [];
 
-    // display the value here
-    $('.list-display-field').text(myItemInStorage); // ??
+  const $textEntry = $('.text-entry');
+  const $listDisplayField = $('.list-display-field');
+  const $btnSubmit = $('.btn-submit');
+  const $btnDelete = $('.btn-delete');
+  const $btnCLear = $('.btn-clear');
+
+
+  $btnSubmit.on('click', function(){
+    if (typeof (Storage) !== 'undefined') {
+      let input = {
+        textEntry: $textEntry.val()
+      }
+      dataInput.push(input);
+
+      localStorage.setItem('todoList', JSON.stringify(dataInput));
+      var myItemInStorage = localStorage.getItem('todoList');
+      console.log('todoList', myItemInStorage);
+    };
+    
+    $listDisplayField.text(myItemInStorage);
 
   });
 
-  // delete from local storage when delete button clicked
-  $('.btn-delete').on('click', function(){
-    localStorage.removeItem('inputFieldValue');
+
+  $btnDelete.on('click', function() {
+    localStorage.removeItem('todoList');
+  });
+
+  $btnCLear.on('click', function() {
+    localStorage.clear();
   });
 
 });
