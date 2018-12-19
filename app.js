@@ -1,7 +1,9 @@
 $(document).ready(function(){
   console.log('jQuery loaded');
 
-  let dataInput = [];
+
+  var myItemInStorage = JSON.parse(localStorage.getItem('todoList'));
+  let dataInput = (myItemInStorage || []);
 
   const $listDisplayField = $('.list-display-field');
   const $btnSubmit = $('.btn-submit');
@@ -26,12 +28,26 @@ $(document).ready(function(){
       };
       dataInput.push(input);
 
+
       localStorage.setItem('todoList', JSON.stringify(dataInput));
-      var myItemInStorage = localStorage.getItem('todoList');
+
       console.log('todoList', myItemInStorage);
     };
 
-    $listDisplayField.text(myItemInStorage);
+    for (let i = 0; i < dataInput.length; i++) {
+      var currentData = dataInput[i];
+      var {Priority, dueDate, Task, Who, doneDate} = currentData;
+      $listDisplayField.append(`
+        <li>
+        <span>Priority: ${Priority}</span>
+        <span>Due-Date: ${dueDate}</span>
+        <span>Task: ${Task}</span>
+        <span>Who: ${Who}</span>
+        <span>Done-Date: ${doneDate}</span>
+        </li>
+
+      `);
+    };
 
   });
 
@@ -45,3 +61,5 @@ $(document).ready(function(){
   });
 
 });
+
+
