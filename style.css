@@ -1,5 +1,43 @@
+body {
+	background: linear-gradient(to right, #a1d3b0, #f6f1d3);
+}
+
+.header-container {
+	display: flex;
+	justify-content: center;
+}
+
+h1 {
+	display: flex;
+	align-items: center;
+	color: blue;
+	text-align: center;
+}
+
 .data-container {
 	display: flex;
 	justify-content: space-around;
 	flex-direction: row;
+	margin-bottom: 40px;
+	flex-wrap: wrap;
+	background: #293f50;
+	color: white;
+}
+
+.btn-container {
+	display: flex;
+	justify-content: space-around;
+	flex-direction: row;
+	align-items: center;
+	margin-bottom: 40px;
+	background: #293f50;
+}
+
+button {
+	font-size: 18px;
+	cursor: pointer;
+}
+
+button:hover {
+	background: #00ffff;
 }

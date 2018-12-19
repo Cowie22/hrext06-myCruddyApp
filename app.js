@@ -27,7 +27,7 @@ $(document).ready(function(){
       dataInput.push(input);
 
       localStorage.setItem('todoList', JSON.stringify(dataInput));
-      var myItemInStorage = JSON.parse(localStorage.getItem('todoList'));
+      var myItemInStorage = localStorage.getItem('todoList');
       console.log('todoList', myItemInStorage);
     };
 
