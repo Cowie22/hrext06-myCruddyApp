@@ -6,6 +6,7 @@ $(document).ready(function(){
   let dataInput = (myItemInStorage || []);
 
   const $listDisplayField = $('.list-display-field');
+  const $completedDisplayField = $('.completed-display-field')
   const $btnSubmit = $('.btn-submit');
   const $btnDelete = $('.btn-delete');
   const $btnCLear = $('.btn-clear');
@@ -14,6 +15,7 @@ $(document).ready(function(){
   const $taskEntry = $('.task-entry');
   const $whoEntry = $('.who-entry');
   const $dueDateEntry = $('.due-date-entry');
+  const $dataList = $('.dataList')
 
   for (let i = 0; i < dataInput.length; i++) {
       var currentData = dataInput[i];
@@ -38,7 +40,8 @@ $(document).ready(function(){
         startDate: $startDateEntry.val(),
         Task: $taskEntry.val(),
         Who: $whoEntry.val(),
-        dueDate: $dueDateEntry.val()
+        dueDate: $dueDateEntry.val(),
+        completed: false
       };
       dataInput.push(input);
 
@@ -50,6 +53,28 @@ $(document).ready(function(){
 
 
   });
+
+  $('.dataList :checkbox').change(function() {
+    var checkedTodo;
+    console.log('hello', this.checked)
+    if (this.checked) {
+      checkedTodo = $(this).parent();
+      $completedDisplayField.append(checkedTodo);
+    } else {
+      checkedTodo = $(this).parent()
+      console.log('unchecked')
+      console.log(checkedTodo)
+      $listDisplayField.append(checkedTodo)
+    }
+
+  });
+
+
+  // $('.completed-display-field :checkbox').change(function() {
+  //   if ((this).prop('checked', false)) {
+  //   }
+  //   console.log('unchecked')
+  // });
 
 
   $btnDelete.on('click', function() {

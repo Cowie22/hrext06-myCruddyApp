@@ -20,6 +20,14 @@ h1 {
 	text-align: center;
 }
 
+.tasks-to-be-completed {
+	color: red;
+}
+
+.completed-tasks {
+	color: #079b00;
+}
+
 /*
 -------------------------
 Data-entry
