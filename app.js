@@ -51,6 +51,7 @@ $(document).ready(function(){
 
     dataInput.push(input);
     localStorage.setItem('todoList', JSON.stringify(dataInput));
+    $('.data-container').trigger('reset')
   });
 
 
