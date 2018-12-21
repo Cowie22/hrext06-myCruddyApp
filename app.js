@@ -109,9 +109,41 @@ $(document).ready(function(){
   });
 
 
-  $btnDelete.on('click', function() {
-    localStorage.removeItem('todoList');
+  $btnDelete.on('click', function () {
+    ($('input[type="checkbox"]')).each(function() {
+      if (this.checked) {
+        deleteTodo = $(this).parent();
+        var deleteTodoID = parseInt(deleteTodo.find('.list-count').text());
+        deleteTodo.remove();
+        var deleteStorage = JSON.parse(localStorage.getItem('todoList'));
+        deleteStorage.splice(deleteTodoID, deleteTodoID + 1);
+        localStorage.removeItem('todoList');
+        localStorage.setItem('todoList', JSON.stringify(deleteStorage));
+      }
+    });
   });
+  // $btnDelete.on('click', function() {
+  //   var deleteStorage = JSON.parse(localStorage.getItem('todoList'));
+  //   //console.log(deleteStorage)
+  //   for (let i = 0; i < deleteStorage.length; i++) {
+  //     let deleteComplete = deleteStorage[i];
+  //     deleteCheckedTodo = $('.list-count').parent();
+  //     console.log(deleteCheckedTodo)
+  //     var deleteTodoID = parseInt(deleteCheckedTodo.find('.list-count').text());
+  //     console.log(deleteTodoID);
+  //     if (deleteComplete.completed) {
+  //       $completedDisplayField.remove();
+  //       deleteStorage.splice(deleteTodoID, deleteTodoID + 1)
+  //       console.log(deleteStorage)
+  //       localStorage.removeItem('todoList');
+  //     }
+  //   }
+  //   localStorage.setItem('todoList', JSON.stringify(deleteStorage));
+  // });
+  //when the button is clicked I want to delete checked todos and remove them from local storage
+  //need to target the checked todos
+  //delete them if they are checked
+  //remove them from local storage if they are checked
 
 
   $btnCLear.on('click', function() {
@@ -119,7 +151,6 @@ $(document).ready(function(){
     $completedDisplayField.remove();
     $listDisplayField.remove();
   });
-
 });
 
 
